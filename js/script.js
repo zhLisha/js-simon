@@ -17,31 +17,35 @@ console.log('Array numeri da memorizzare', randomNumberList);
 alert(`Memorizza questi numeri: ${randomNumberList}`);
 
 
-// Creare un setTimeout della durata di 30 sec. dalla chiusura dell'alert
+// Creare un setTimeout della durata di 30 sec. dalla chiusura dell'alert con function: userNUmbers
 setTimeout(userNumbers, 3000);
 
-// Registrare i numeri dell'utente in un altro array (userNumberList)
-let userNumberList = [];
+function userNumbers() {   
+   
+    // Registrare userNumbers array da tenere in conto di tutti i tentativi
+    const userNumberList = [];
+    // Registrare solo gli userNumbers corretti
+    const correctNumbers = [];
 
-function userNumbers() {
+
     // 5 promt diversi consecutivi in cui l'utente inserira' i numeri dell'array randomNumberList
     while( userNumberList.length < totalElements){
-        const userNumber = parseInt( prompt('Scrivi un numero memorizzato'));
+        const userNumber = parseInt( prompt('Scrivi un numero memorizzato da 1 a 100'));
 
         if(!userNumberList.includes(userNumber)) {
             userNumberList.push(userNumber);
         }
-        console.log('Singoli userNumber', userNumberList);
+        if(randomNumberList.includes(userNumber)) {
+            correctNumbers.push(userNumber);
+        }
     }
-    // Confrontare userNumberList con randomNumberList per dare l'esito finale.
+    console.log('Totale userNumber', userNumberList);
+    console.log('Totale correctNumber', correctNumbers);
 
+           
+    // Messaggio per l'utente con i tentativi esatti e i numeri giusti
+    alert(`Il tuo punteggio è: ${correctNumbers.length}/5 con i seguenti i numeri: ${correctNumbers}`)
 }
-
-
-
-
-
-
 
 
 
@@ -56,24 +60,26 @@ function randomNumber(min, max) {
 }
 
 // GENERAZIONE DI NUMERI (RANDOM)
-// listRandomBumber ----> array in cui verranno inseriti i numeri random
+// listRandomNumber ----> array in cui verranno inseriti i numeri random
 // maxRange ----> variabile function: numeri random da 1 a maxNumber
 // pushare nell'array listRandomBumber solo se i numeri non sono gia' presenti finche' non raggiunge un totale di: 5 elementi (in questo caso numeri)
 function randomNumberArray(minNumber, maxNumber, totalNumberElement) {
 
-    // Lista array 16 bombe da riempire
-    const listRandomBumber = [];
+    // Lista array da riempire
+    const listRandomNumber = [];
 
     // Ciclo per generare numeri bomba fino ad arrivare a 16 elementi non duplicati da inserire in listBombsNumber
-    while(listRandomBumber.length < totalNumberElement) {
+    while(listRandomNumber.length < totalNumberElement) {
 
         // Dichiarata la funzione di generatore numeri random da-a
         let maxRange = randomNumber(minNumber, maxNumber);
     
-        // Push solo dei lvMaxNumber non presenti ancora in listBombsNumber
-        if(!listRandomBumber.includes(maxRange)) {
-            listRandomBumber.push(maxRange);
+        // Push solo dei maxRange non presenti ancora in listRandomNumber
+        if(!listRandomNumber.includes(maxRange)) {
+            listRandomNumber.push(maxRange);
         } 
     }
-    return listRandomBumber;
+    return listRandomNumber;
 }
+
+
