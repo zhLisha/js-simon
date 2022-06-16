@@ -5,6 +5,10 @@
 */
 
 
+// Variabili 
+const totalElements = 5;
+
+
 // Dichiaro la funzione per generare numeri random per l'array randomNumberList
 const randomNumberList = randomNumberArray(1, 100, 5);
 console.log('Array numeri da memorizzare', randomNumberList);
@@ -12,6 +16,26 @@ console.log('Array numeri da memorizzare', randomNumberList);
 // Creare un alert con i numeri presenti nell'Array: randomNumberList
 alert(`Memorizza questi numeri: ${randomNumberList}`);
 
+
+// Creare un setTimeout della durata di 30 sec. dalla chiusura dell'alert
+setTimeout(userNumbers, 3000);
+
+// Registrare i numeri dell'utente in un altro array (userNumberList)
+let userNumberList = [];
+
+function userNumbers() {
+    // 5 promt diversi consecutivi in cui l'utente inserira' i numeri dell'array randomNumberList
+    while( userNumberList.length < totalElements){
+        const userNumber = parseInt( prompt('Scrivi un numero memorizzato'));
+
+        if(!userNumberList.includes(userNumber)) {
+            userNumberList.push(userNumber);
+        }
+        console.log('Singoli userNumber', userNumberList);
+    }
+    // Confrontare userNumberList con randomNumberList per dare l'esito finale.
+
+}
 
 
 
