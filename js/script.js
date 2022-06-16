@@ -11,14 +11,13 @@ const totalElements = 5;
 
 // Dichiaro la funzione per generare numeri random per l'array randomNumberList
 const randomNumberList = randomNumberArray(1, 100, 5);
-console.log('Array numeri da memorizzare', randomNumberList);
 
 // Creare un alert con i numeri presenti nell'Array: randomNumberList
 alert(`Memorizza questi numeri: ${randomNumberList}`);
 
 
 // Creare un setTimeout della durata di 30 sec. dalla chiusura dell'alert con function: userNUmbers
-setTimeout(userNumbers, 3000);
+setTimeout(userNumbers, 1000);
 
 function userNumbers() {   
    
@@ -27,24 +26,30 @@ function userNumbers() {
     // Registrare solo gli userNumbers corretti
     const correctNumbers = [];
 
+    // Variabile messaggio per non superare la soglia di numeri indicata
+    let userMesage = 'Fai attenzione, non andare oltre il numero 100 o al di sotto di 1';
 
-    // 5 promt diversi consecutivi in cui l'utente inserira' i numeri dell'array randomNumberList
+
+    // 5 promt diversi consecutivi in cui l'utente inserira' i numeri dell'array userNumberList e correctNumbers
     while( userNumberList.length < totalElements){
         const userNumber = parseInt( prompt('Scrivi un numero memorizzato da 1 a 100'));
 
-        if(!userNumberList.includes(userNumber)) {
+        // Push solo dei numeri che non sono ancora presenti in userNumberList, dei numeri inferiori o uguali a 100 e quelli superiori o uguali a 1
+        if(!userNumberList.includes(userNumber) && userNumber <= 100 && userNumber >= 1) {
             userNumberList.push(userNumber);
+        } 
+        // Se supera i 100 o va al di sotto di 1 si aziona alert di avvertimento
+        else if(userNumber > 100 || userNumber < 1) {
+            alert(userMesage)
         }
-        if(randomNumberList.includes(userNumber)) {
+        // Push solo dei numeri corretti e che non siano gia' presenti nel correctNumbers per evitare duplicati
+        if(randomNumberList.includes(userNumber) && !correctNumbers.includes(userNumber)) {
             correctNumbers.push(userNumber);
         }
     }
-    console.log('Totale userNumber', userNumberList);
-    console.log('Totale correctNumber', correctNumbers);
-
-           
+    
     // Messaggio per l'utente con i tentativi esatti e i numeri giusti
-    alert(`Il tuo punteggio è: ${correctNumbers.length}/5 con i seguenti i numeri: ${correctNumbers}`)
+    alert(`Il tuo punteggio è: ${correctNumbers.length}/${totalElements} con i seguenti i numeri: ${correctNumbers}`)
 }
 
 
